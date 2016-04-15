@@ -1,0 +1,19 @@
+<div ng-controller="ProjectCtrl">
+  <table ng-if="allProject != ''" class="table table-striped">
+    <tr>
+      <th>Titre</th>
+      <th>Description</th>
+      <th>Autheur</th>
+      <th>Manager</th>
+      <th>Date de création</th>
+    </tr>
+    <tr ng-repeat="item in allProject">
+      <th><a ng-href="#/detail-project/{{item.id}}">{{item.title}}</a></th>
+      <th>{{item.description}}</th>
+      <th>{{item.authorId.realm}}</th>
+      <th>{{item.managerId.realm}}</th>
+      <th>{{item.date_creation | date:'dd-MM-yyyy'}}</th>
+    </tr>
+  </table>
+  <p><a class="btn btn-lg btn-success" ng-href="#/add-project">Créer votre projet <span class="glyphicon glyphicon-ok"></span></a></p>
+</div>

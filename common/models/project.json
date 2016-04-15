@@ -1,0 +1,59 @@
+{
+  "name": "Project",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "date_creation": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "author": {
+      "type": "belongsTo",
+      "model": "User",
+      "foreignKey": "authorId"
+    },
+    "manager": {
+      "type": "referencesMany",
+      "model": "User",
+      "foreignKey": "managerId",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    },
+    "participant": {
+      "type": "referencesMany",
+      "model": "User",
+      "foreignKey": "participantIds",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    },
+    "task": {
+      "type": "referencesMany",
+      "model": "Task",
+      "foreignKey": "taskIds",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

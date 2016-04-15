@@ -1,0 +1,15 @@
+<div ng-controller="ConnexionCtrl">
+  <form novalidate>
+    <div class="form-group">
+      <label>Email</label>
+      <input class="form-control" ng-model="user.email" type="email">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input class="form-control" ng-model="user.password" type="password">
+    </div>
+
+    <input class="btn btn-default" ng-click="update(user)" type="submit" value="Connexion">
+  </form>
+
+</div>
