@@ -33,7 +33,24 @@ angular.module('workflowApp')
           password: password,
           username: pseudo,
           realm: fullname})
-        .$promise;
+        .$promise.then(function(){
+            $rootScope.errorRegister = null;
+          $location.path('/');
+        },
+        function(reason){
+          if(reason.data.error.details.messages.hasOwnProperty("email")) {
+            $rootScope.errorRegister = "L'email entré existe déjà !";
+          }
+
+          if(reason.data.error.details.messages.hasOwnProperty("username")){
+            $rootScope.errorRegister = "Le nom d'utilisateur est déjà présent !";
+          }
+
+          if(reason.data.error.details.messages.hasOwnProperty("username") &&
+            reason.data.error.details.messages.hasOwnProperty("email")){
+            $rootScope.errorRegister = "Le nom d'utilisateur et l'email sont déjà présents !";
+          }
+        });
     }
 
     return {
