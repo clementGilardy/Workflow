@@ -34,10 +34,12 @@ angular.module('workflowApp')
           username: pseudo,
           realm: fullname})
         .$promise.then(function(){
+          //success
             $rootScope.errorRegister = null;
           $location.path('/');
         },
         function(reason){
+          //failed
           if(reason.data.error.details.messages.hasOwnProperty("email")) {
             $rootScope.errorRegister = "L'email entré existe déjà !";
           }
