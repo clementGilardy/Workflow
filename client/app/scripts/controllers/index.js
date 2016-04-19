@@ -21,4 +21,8 @@ angular.module('workflowApp')
       $notification.notify("images/success.png","Connexion", "Vous êtes bien connecté", "");
     }
 
-  });
+  }).controller('HeaderCtrl',function($scope,$location){
+      $scope.isActive = function (viewLocation) {
+        return viewLocation === $location.path();
+      };
+});
