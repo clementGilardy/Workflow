@@ -1,5 +1,5 @@
 angular.module('workflowApp')
-  .factory('ProjectService', ['Project','UserService','$location','$rootScope','Customer', function(Project,UserService,$location,$rootScope,Customer){
+  .factory('ProjectService', ['Project','UserService','$location','$rootScope','$timeout', function(Project,UserService,$location,$rootScope,$timeout){
 
     function getAllProjectUser(id){
       return Project.find({filter:{where:{participantIds:id}}},function(data){
@@ -26,11 +26,16 @@ angular.module('workflowApp')
           project.$save(function(){
             //success
             $rootScope.SuccessEmail = "L'utilisateur à bien été ajouté au projet !";
-            $rootScope.ErrorEmail = null;
+            $timeout(function(){
+              $rootScope.SuccessEmail = null;
+            }, 3000);
           },function () {
             //failed
             $rootScope.ErrorEmail = "L'utilisateur participe déjà au projet ou il n'est pas inscrit !";
-            $rootScope.SuccessEmail = null;
+            $timeout(function(){
+              $rootScope.ErrorEmail = null;
+            }, 3000);
+
           });
         });
       });

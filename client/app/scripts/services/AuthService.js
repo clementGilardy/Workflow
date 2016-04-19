@@ -1,5 +1,5 @@
 angular.module('workflowApp')
-  .factory('AuthService', ['$rootScope','Customer','$cookies','$location', function($rootScope,Customer,$cookies,$location){
+  .factory('AuthService', ['$rootScope','Customer','$cookies','$location','$timeout', function($rootScope,Customer,$cookies,$location,$timeout){
 
     function login(email,password) {
       return Customer.login({email: email, password: password})
@@ -35,13 +35,13 @@ angular.module('workflowApp')
           realm: fullname})
         .$promise.then(function(){
           //success
-            $rootScope.errorRegister = null;
           $location.path('/');
         },
         function(reason){
           //failed
           if(reason.data.error.details.messages.hasOwnProperty("email")) {
             $rootScope.errorRegister = "L'email entré existe déjà !";
+
           }
 
           if(reason.data.error.details.messages.hasOwnProperty("username")){
@@ -52,6 +52,10 @@ angular.module('workflowApp')
             reason.data.error.details.messages.hasOwnProperty("email")){
             $rootScope.errorRegister = "Le nom d'utilisateur et l'email sont déjà présents !";
           }
+
+          $timeout(function(){
+            $rootScope.errorRegister = null;
+          }, 3000);
         });
     }
 
