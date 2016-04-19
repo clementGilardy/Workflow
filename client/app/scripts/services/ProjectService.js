@@ -14,9 +14,7 @@ angular.module('workflowApp')
             var idManager = value.managerId;
             value.managerId = UserService.getUserById(idManager);
           }
-
         });
-
       });
     }
 
@@ -25,9 +23,16 @@ angular.module('workflowApp')
 
         UserService.getUserByMail(email).$promise.then(function(user){
           project.participantIds.push(user[user.length-1].id);
-          project.$save();
+          project.$save(function(){
+            //success
+            $rootScope.SuccessEmail = "L'utilisateur à bien été ajouté au projet !";
+            $rootScope.ErrorEmail = null;
+          },function () {
+            //failed
+            $rootScope.ErrorEmail = "L'utilisateur participe déjà au projet ou il n'est pas inscrit !";
+            $rootScope.SuccessEmail = null;
+          });
         });
-
       });
     }
 

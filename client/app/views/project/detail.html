@@ -11,6 +11,12 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Ajouter un participant</h4>
           </div>
+          <div ng-show="ErrorEmail" class="alert alert-danger" role="alert">
+            <p>{{ErrorEmail}}</p>
+          </div>
+          <div ng-show="SuccessEmail" class="alert alert-success" role="alert">
+            <p>{{SuccessEmail}}</p>
+          </div>
           <form class="form-inline" novalidate>
             <div class="modal-body">
               <div class="form-group">
