@@ -19,12 +19,12 @@ angular.module('workflowApp')
       return Customer.logout()
         .$promise
         .then(function(){
-            $rootScope.isAuth = true;
+            $rootScope.isAuth = false;
             $location.path('/');
         },function(){
             $rootScope.isAuth = false;
             $rootScope.notify = false;
-            $location.path('/connexion');
+            $location.path('/');
         });
     }
 

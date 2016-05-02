@@ -18,8 +18,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'lbServices',
-    'notifications'
+    'lbServices'
   ])
   .config(function ($routeProvider,LoopBackResourceProvider) {
     LoopBackResourceProvider.setUrlBase('http://localhost:3000/api');
@@ -38,6 +37,11 @@ angular
         templateUrl:'views/project/add.html',
         controller: 'ProjectCtrl',
         controllerAs: 'project'
+      })
+      .when('/tasks',{
+        templateUrl: 'views/task/tasks.html',
+        controller: 'TasksCtrl',
+        controllerAs: 'tasks'
       })
       .when('/connexion',{
         templateUrl: 'views/connexion.html',

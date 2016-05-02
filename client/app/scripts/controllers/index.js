@@ -8,7 +8,7 @@
  * Controller of the workflowApp
  */
 angular.module('workflowApp')
-  .controller('IndexCtrl', function ($scope,$cookies,Customer,$rootScope,$notification,AuthService) {
+  .controller('IndexCtrl', function ($scope,$cookies,Customer,$rootScope,AuthService) {
 
     $scope.deconnexion = function(){
       AuthService.logout();
@@ -18,7 +18,6 @@ angular.module('workflowApp')
     {
       $rootScope.isAuth = true;
       $rootScope.notify = false;
-      $notification.notify("images/success.png","Connexion", "Vous êtes bien connecté", "");
     }
 
   }).controller('HeaderCtrl',function($scope,$location){
