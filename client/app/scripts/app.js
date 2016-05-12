@@ -63,6 +63,11 @@ angular
         controller: 'detailProjectCtrl',
         controllerAs: 'project'
       })
+      .when('/admin',{
+        templateUrl: "views/admin/admin.html",
+        controller: "AdminCtrl",
+        controllerAs: 'admin'
+      })
       .otherwise({
         redirectTo: '/'
       });

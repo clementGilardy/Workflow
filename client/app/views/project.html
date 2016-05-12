@@ -1,4 +1,4 @@
-<div ng-controller="ProjectCtrl">
+<div ng-if="isAuth" ng-controller="ProjectCtrl">
   <table ng-if="allProject != ''" class="table table-striped">
     <tr>
       <th>Titre</th>
@@ -17,4 +17,9 @@
   </table>
   <p ng-if="allProject == ''">Vous ne possédez pas de projet et vous ne participer à aucun projet !</p>
   <p><a class="btn btn-lg btn-success" ng-href="#/add-project">Créer votre projet <span class="glyphicon glyphicon-ok"></span></a></p>
+</div>
+<div ng-if="!isAuth">
+  <div ng-if="!isAuth" class="alert alert-warning alert-dismissible" role="alert">
+    <strong>Attention !</strong> Vous n'êtes pas connecté !
+  </div>
 </div>

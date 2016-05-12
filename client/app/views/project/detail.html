@@ -1,4 +1,4 @@
-<div ng-controller="detailProjectCtrl">
+<div ng-if="isAuth" ng-controller="detailProjectCtrl">
   <h1 style="text-align:center">{{project.title}}</h1>
   <p>Manager : {{project.managerId.realm}}</p>
   <p>{{project.description}}</p>
@@ -32,5 +32,10 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+  </div>
+</div>
+<div ng-if="!isAuth">
+  <div ng-if="!isAuth" class="alert alert-warning alert-dismissible" role="alert">
+    <strong>Attention !</strong> Vous n'êtes pas connecté !
   </div>
 </div>

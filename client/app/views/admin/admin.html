@@ -1,0 +1,8 @@
+<div ng-if="isAdmin" ng-controller="AdminCtrl">
+
+</div>
+<div ng-if="!isAdmin">
+  <div ng-if="!isAuth" class="alert alert-warning alert-dismissible" role="alert">
+    <strong>Attention !</strong> Seul un administrateur peut avoir accès à cette page.
+  </div>
+</div>
