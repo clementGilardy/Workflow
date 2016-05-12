@@ -52,8 +52,33 @@
         "validate": true,
         "forceId": false
       }
+    },
+    "status": {
+      "type": "belongsTo",
+      "model": "Pr_status",
+      "foreignKey": "statusId",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    },
+    "type": {
+      "type": "belongsTo",
+      "model": "Pr_type",
+      "foreignKey": "typeId",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }

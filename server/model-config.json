@@ -15,7 +15,7 @@
   },
   "User": {
     "dataSource": "db",
-    "public":false
+    "public": false
   },
   "AccessToken": {
     "dataSource": "db",
@@ -31,7 +31,7 @@
   },
   "Role": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "Project": {
     "dataSource": "db",
@@ -48,5 +48,17 @@
   "Customer": {
     "dataSource": "db",
     "public": true
+  },
+  "Pr_type": {
+    "dataSource": "db",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Pr_status": {
+    "dataSource": "db",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
   }
 }

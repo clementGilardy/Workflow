@@ -1,11 +1,12 @@
 angular.module('workflowApp')
-  .factory('AuthService', ['$rootScope','Customer','$cookies','$location','$timeout', function($rootScope,Customer,$cookies,$location,$timeout){
+  .factory('AuthService', ['$rootScope','Customer','$cookies','$location','$timeout','UserService', function($rootScope,Customer,$cookies,$location,$timeout,UserService){
 
     function login(email,password) {
       return Customer.login({email: email, password: password})
         .$promise
         .then(function () {
           $rootScope.isAuth = true;
+          $rootScope.isAdmin = UserService.isAdmin();
           $rootScope.notify = true;
           $location.path('/');
         });
@@ -20,9 +21,11 @@ angular.module('workflowApp')
         .$promise
         .then(function(){
             $rootScope.isAuth = false;
+            $rootScope.isAdmin = false;
             $location.path('/');
         },function(){
             $rootScope.isAuth = false;
+            $rootScope.isAdmin = false;
             $rootScope.notify = false;
             $location.path('/');
         });
@@ -32,7 +35,8 @@ angular.module('workflowApp')
       return Customer.create({ email: email,
           password: password,
           username: pseudo,
-          realm: fullname})
+          realm: fullname,
+          roleId: 1})
         .$promise.then(function(){
           //success
           $location.path('/');

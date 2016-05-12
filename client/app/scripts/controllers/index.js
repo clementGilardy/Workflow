@@ -8,7 +8,7 @@
  * Controller of the workflowApp
  */
 angular.module('workflowApp')
-  .controller('IndexCtrl', function ($scope,$cookies,Customer,$rootScope,AuthService) {
+  .controller('IndexCtrl', function ($scope,$cookies,Customer,$rootScope,AuthService,UserService) {
 
     $scope.deconnexion = function(){
       AuthService.logout();
@@ -16,6 +16,7 @@ angular.module('workflowApp')
 
     if(Customer.isAuthenticated())
     {
+      $rootScope.isAdmin = UserService.isAdmin();
       $rootScope.isAuth = true;
       $rootScope.notify = false;
     }

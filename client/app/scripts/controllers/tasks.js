@@ -10,5 +10,5 @@
 
 angular.module('workflowApp')
   .controller('TasksCtrl', function (ProjectService,$scope,Customer) {
-
+      $scope.test = "coucou ça va";
   });

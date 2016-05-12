@@ -1,5 +1,5 @@
 <div ng-controller="addProjectCtrl">
-  <form novalidate>
+  <form ng-if="isAuth" novalidate>
     <div class="form-group">
       <label>Titre</label>
       <input class="form-control" ng-model="project.title" type="text">
@@ -11,5 +11,7 @@
 
     <input class="btn btn-default" ng-click="create(project)" type="submit" value="Créer">
   </form>
-  {{test}}
+  <div ng-if="!isAuth" class="alert alert-warning alert-dismissible" role="alert">
+    <strong>Attention !</strong> Tu as besoin d'être connecté pour participer à des projets
+  </div>
 </div>
