@@ -2,7 +2,13 @@ angular.module('workflowApp')
   .factory('ProjectService', ['Project','UserService','$location','$rootScope','$timeout', function(Project,UserService,$location,$rootScope,$timeout){
 
     function getAllProjectUser(id){
-      return Project.find({filter:{where:{participantIds:id}}},function(data){
+      return Project.find({
+        filter:{
+          where:{
+            participantIds:[id]
+          }
+        }
+      },function(data){
         angular.forEach(data,function(value){
           if(typeof value.authorId != '')
           {

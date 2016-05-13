@@ -1,12 +1,14 @@
 angular.module('workflowApp')
-  .factory('AuthService', ['$rootScope','Customer','$cookies','$location','$timeout','UserService', function($rootScope,Customer,$cookies,$location,$timeout,UserService){
+  .factory('AuthService', ['$rootScope','Customer','$cookies','$location','$timeout','UserService','Cu_role', function($rootScope,Customer,$cookies,$location,$timeout,UserService,Cu_role){
 
     function login(email,password) {
       return Customer.login({email: email, password: password})
         .$promise
         .then(function () {
           $rootScope.isAuth = true;
-          $rootScope.isAdmin = UserService.isAdmin();
+          UserService.isAdmin(function(bool){
+            $rootScope.isAdmin = bool;
+          });
           $rootScope.notify = true;
           $location.path('/');
         });
@@ -32,35 +34,36 @@ angular.module('workflowApp')
     }
 
     function register(email,password,fullname,pseudo){
-      return Customer.create({ email: email,
+
+      return  Cu_role.find({where:{name:"user"}},function(role){
+        Customer.create({ email: email,
           password: password,
           username: pseudo,
           realm: fullname,
-          roleId: 1})
-        .$promise.then(function(){
-          //success
-          $location.path('/');
+          roleId: role[1].id}).$promise.then(function(){
+            $location.path('/');
         },
-        function(reason){
-          //failed
-          if(reason.data.error.details.messages.hasOwnProperty("email")) {
-            $rootScope.errorRegister = "L'email entré existe déjà !";
+          function(reason){
+            //failed
+            if(reason.data.error.details.messages.hasOwnProperty("email")) {
+              $rootScope.errorRegister = "L'email entré existe déjà !";
 
-          }
+            }
 
-          if(reason.data.error.details.messages.hasOwnProperty("username")){
-            $rootScope.errorRegister = "Le nom d'utilisateur est déjà présent !";
-          }
+            if(reason.data.error.details.messages.hasOwnProperty("username")){
+              $rootScope.errorRegister = "Le nom d'utilisateur est déjà présent !";
+            }
 
-          if(reason.data.error.details.messages.hasOwnProperty("username") &&
-            reason.data.error.details.messages.hasOwnProperty("email")){
-            $rootScope.errorRegister = "Le nom d'utilisateur et l'email sont déjà présents !";
-          }
+            if(reason.data.error.details.messages.hasOwnProperty("username") &&
+              reason.data.error.details.messages.hasOwnProperty("email")){
+              $rootScope.errorRegister = "Le nom d'utilisateur et l'email sont déjà présents !";
+            }
 
-          $timeout(function(){
-            $rootScope.errorRegister = null;
-          }, 3000);
+            $timeout(function(){
+              $rootScope.errorRegister = null;
+            }, 3000);
         });
+      });
     }
 
     return {

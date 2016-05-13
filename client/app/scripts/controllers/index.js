@@ -16,7 +16,9 @@ angular.module('workflowApp')
 
     if(Customer.isAuthenticated())
     {
-      $rootScope.isAdmin = UserService.isAdmin();
+      UserService.isAdmin(function(bool){
+        $rootScope.isAdmin = bool;
+      });
       $rootScope.isAuth = true;
       $rootScope.notify = false;
     }

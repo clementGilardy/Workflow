@@ -1,19 +1,13 @@
 {
-  "name": "Customer",
-  "base": "User",
+  "name": "Cu_role",
+  "base": "Role",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {},
   "validations": [],
-  "relations": {
-    "role": {
-      "type": "belongsTo",
-      "model": "Cu_role",
-      "foreignKey": "roleId"
-    }
-  },
+  "relations": {},
   "acls": [
     {
       "accessType": "READ",

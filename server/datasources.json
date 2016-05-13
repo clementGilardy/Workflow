@@ -2,5 +2,16 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "workflow": {
+    "host": "localhost",
+    "database": "workflow",
+    "name": "workflow",
+    "user": "root",
+    "connector": "mysql"
+  },
+  "mongoDb": {
+    "name": "mongoDb",
+    "connector": "mongodb"
   }
 }

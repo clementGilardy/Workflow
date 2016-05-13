@@ -1,13 +1,15 @@
 angular.module('workflowApp')
-  .factory('UserService', ['Customer','$rootScope', function(Customer,$rootScope){
+  .factory('UserService', ['Customer','$rootScope','Cu_role', function(Customer,$rootScope,Cu_role){
 
     function getUserById(id){
       return Customer.findById({id:id});
     }
 
-    function isAdmin(){
-      return Customer.findById({id:Customer.getCurrentId()},function(user){
-        return (user.roleId == 1?true:false);
+    function isAdmin(test){
+       Customer.findById({id:Customer.getCurrentId()},function(user){
+         Cu_role.findById({id:user.roleId},function(role){
+          test((role.name == "admin"?true:false));
+        });
       });
     }
 
