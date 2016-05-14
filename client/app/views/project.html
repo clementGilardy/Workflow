@@ -2,16 +2,16 @@
   <table ng-if="allProject != ''" class="table table-striped">
     <tr>
       <th>Titre</th>
-      <th>Description</th>
       <th>Autheur</th>
       <th>Manager</th>
+      <th>Status</th>
       <th>Date de création</th>
     </tr>
     <tr ng-repeat="item in allProject">
       <th><a ng-href="#/detail-project/{{item.id}}">{{item.title}}</a></th>
-      <th>{{item.description}}</th>
       <th>{{item.authorId.realm}}</th>
       <th>{{item.managerId.realm}}</th>
+      <th></th>
       <th>{{item.date_creation | date:'dd-MM-yyyy'}}</th>
     </tr>
   </table>

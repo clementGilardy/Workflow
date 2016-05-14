@@ -4,13 +4,13 @@ angular.module('workflowApp')
     function getAllProjectUser(id){
       return Project.find({filter:{where:{participantIds:id}}},function(data){
         angular.forEach(data,function(value){
-          if(typeof value.authorId != '')
+          if(typeof value.authorId != 'undefined')
           {
             var idAuthor = value.authorId;
             value.authorId = UserService.getUserById(idAuthor);
           }
 
-          if(typeof value.managerId != '') {
+          if(typeof value.managerId != 'undefined') {
             var idManager = value.managerId;
             value.managerId = UserService.getUserById(idManager);
           }
@@ -53,6 +53,14 @@ angular.module('workflowApp')
           var idManager = data.managerId;
           data.managerId = UserService.getUserById(idManager);
         }
+
+        if(typeof data.participantIds != 'undefined'){
+          var arrayIdUser = data.participantIds;
+          var users = [];
+          UserService.getAllUserById(arrayIdUser,users);
+          data.participantIds = users;
+        }
+
 
       });
     }

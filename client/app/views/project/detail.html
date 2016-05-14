@@ -1,7 +1,11 @@
 <div ng-if="isAuth" ng-controller="detailProjectCtrl">
   <h1 style="text-align:center">{{project.title}}</h1>
   <p>Manager : {{project.managerId.realm}}</p>
-  <p>{{project.description}}</p>
+  <p>Description : {{project.description}}</p>
+  <p>Participant : </p>
+  <ul>
+    <li ng-repeat="item in project.participantIds"> {{item.username}}</li>
+  </ul>
   <p><a class="btn btn-lg btn-success" ng-click="display()">Ajouter des participants</a></p>
   <div ng-show="emailParticipant">
     <div id="modalEmailParticipant" class="modal fade" tabindex="-1" role="dialog">

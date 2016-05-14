@@ -5,6 +5,14 @@ angular.module('workflowApp')
       return Customer.findById({id:id});
     }
 
+    function getAllUserById(arrayId,users){
+      angular.forEach(arrayId,function(value){
+        Customer.findById({id:value},function(user){
+          users.push(user);
+        });
+      });
+    }
+
     function isAdmin(test){
        Customer.findById({id:Customer.getCurrentId()},function(user){
          Cu_role.findById({id:user.roleId},function(role){
@@ -20,7 +28,9 @@ angular.module('workflowApp')
     return {
       getUserById:getUserById,
       getUserByMail:getUserByMail,
-      isAdmin:isAdmin
+      isAdmin:isAdmin,
+      getAllUserById:getAllUserById
+
     };
 
   }]);
