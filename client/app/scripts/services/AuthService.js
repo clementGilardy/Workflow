@@ -35,12 +35,12 @@ angular.module('workflowApp')
 
     function register(email,password,fullname,pseudo){
 
-      return  Cu_role.find({where:{name:"user"}},function(role){
+      return  Cu_role.find({filter:{where:{name:"user"}}},function(role){
         Customer.create({ email: email,
           password: password,
           username: pseudo,
           realm: fullname,
-          roleId: role[1].id}).$promise.then(function(){
+          roleId: role[0].id}).$promise.then(function(){
             $location.path('/');
         },
           function(reason){

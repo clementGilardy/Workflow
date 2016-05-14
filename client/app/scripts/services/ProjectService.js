@@ -2,13 +2,7 @@ angular.module('workflowApp')
   .factory('ProjectService', ['Project','UserService','$location','$rootScope','$timeout', function(Project,UserService,$location,$rootScope,$timeout){
 
     function getAllProjectUser(id){
-      return Project.find({
-        filter:{
-          where:{
-            participantIds:[id]
-          }
-        }
-      },function(data){
+      return Project.find({filter:{where:{participantIds:id}}},function(data){
         angular.forEach(data,function(value){
           if(typeof value.authorId != '')
           {
@@ -64,7 +58,7 @@ angular.module('workflowApp')
     }
 
     function addProject(titre,desc,author,manager,date){
-      return Project.create({title:titre,description:desc,authorId:author,managerId:[manager],participantIds:[manager],date_creation:date},function(){
+      return Project.create({title:titre,description:desc,authorId:author,managerId:manager,participantIds:manager,date_creation:date},function(){
         $location.path('/project');
       });
     }
