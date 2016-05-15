@@ -11,6 +11,9 @@
 angular.module('workflowApp')
   .controller('TasksCtrl', function (ProjectService,$scope,Customer) {
 
-  }).controller('FormAddCtrl',function(ProjectService,$scope,Customer){
-    $scope.projectUser = ProjectService.getAll(Customer.getCurrentId());
+  }).controller('FormAddCtrl',function(ProjectService,$scope,Customer,TasksService){
+    $scope.data = {
+      projectUser:ProjectService.getAll(Customer.getCurrentId()),
+      priority:TasksService.getPriority()
+    }
 });

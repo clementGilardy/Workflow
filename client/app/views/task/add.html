@@ -7,7 +7,13 @@
     <div class="form-groupe">
       <label>Projet</label>
       <select ng-model="projectUser">
-        <option ng-repeat="project in projectUser" value="{{project.id}}">{{project.title}}</option>
+        <option ng-repeat="project in data.projectUser" value="{{project.id}}">{{project.title}}</option>
+      </select>
+    </div>
+    <div class="form-groupe">
+      <label>Priorité</label>
+      <select ng-model="projectUser">
+        <option ng-repeat="p in data.priority" value="{{p.id}}">{{p.name}}</option>
       </select>
     </div>
     <div class="form-group">
