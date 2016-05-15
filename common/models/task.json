@@ -34,6 +34,11 @@
         "validate": true,
         "forceId": false
       }
+    },
+    "priority":{
+      "type":"belongsTo",
+      "model":"Ta_priority",
+      "foreignKey":"prioreityId"
     }
   },
   "acls": [

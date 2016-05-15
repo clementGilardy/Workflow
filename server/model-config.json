@@ -68,5 +68,11 @@
     "public": true,
     "$promise": {},
     "$resolved": true
+  },
+  "Ta_priority": {
+    "dataSource": "mongoDb",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
   }
 }

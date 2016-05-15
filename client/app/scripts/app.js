@@ -43,6 +43,11 @@ angular
         controller: 'TasksCtrl',
         controllerAs: 'tasks'
       })
+      .when('/add-task',{
+        templateUrl: 'views/task/add.html',
+        controller: 'FormAddCtrl',
+        controllerAs: 'tasks'
+      })
       .when('/connexion',{
         templateUrl: 'views/connexion.html',
         controller: 'ConnexionCtrl',

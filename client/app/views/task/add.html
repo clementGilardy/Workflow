@@ -1,0 +1,23 @@
+<div ng-controller="FormAddCtrl">
+  <form ng-if="isAuth" novalidate>
+    <div class="form-group">
+      <label>Titre</label>
+      <input class="form-control" ng-model="project.title" type="text">
+    </div>
+    <div class="form-groupe">
+      <label>Projet</label>
+      <select ng-model="projectUser">
+        <option ng-repeat="project in projectUser" value="{{project.id}}">{{project.title}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" rows="5" id="description" ng-model="tasks.content"></textarea>
+    </div>
+
+    <input class="btn btn-default" ng-click="" type="submit" value="Créer">
+  </form>
+  <div ng-if="!isAuth" class="alert alert-warning alert-dismissible" role="alert">
+    <strong>Attention !</strong> Tu as besoin d'être connecté pour ajouter une tâche !
+  </div>
+</div>
