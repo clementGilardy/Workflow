@@ -15,10 +15,6 @@
       "type": "number",
       "required": true
     },
-    "status": {
-      "type": "string",
-      "required": true
-    },
     "content": {
       "type": "string",
       "required": true
@@ -35,10 +31,15 @@
         "forceId": false
       }
     },
-    "priority":{
+    "priority": {
+      "type": "belongsTo",
+      "model": "Ta_priority",
+      "foreignKey": "prioreityId"
+    },
+    "status":{
       "type":"belongsTo",
-      "model":"Ta_priority",
-      "foreignKey":"prioreityId"
+      "model":"Ta_status",
+      "foreignKey":"statusId"
     }
   },
   "acls": [
